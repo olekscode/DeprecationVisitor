@@ -64,3 +64,16 @@ DeprecationModel new
         antecedent: '`@rec address'
 	consequent: '`@rec getHandle').
 ```
+
+A simple example of collecting all method deprecations from a Pharo image:
+
+```Smalltalk
+methods := Smalltalk image packages flatCollect: [ :package | package methods ].
+
+visitor := DeprecationVisitor new.
+
+methods do: [ :method |
+    method ast acceptVisitor: visitor ].
+
+visitor deprecations.
+```
