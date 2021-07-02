@@ -3,36 +3,65 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'message',
+		'date',
+		'version',
+		'condition',
 		'transformationRule'
 	],
 	#category : #DeprecationVisitor
 }
 
-{ #category : #'instance creation' }
-DeprecationModel class >> fromDictionary: aDictionary [
+{ #category : #comparing }
+DeprecationModel >> = anObject [
 
-	| deprecation transformationRule |
-	
-	deprecation := self new
-		message: (aDictionary at: 'message');
-		yourself.
+	self class = anObject class
+		ifFalse: [ ^ false ].
 		
-	transformationRule := aDictionary at: 'transformationRule'.
-	
-	transformationRule ifNotNil: [ 
-		deprecation transformationRule: (TransformationRule fromString: transformationRule) ].
-	
-	^ deprecation
+	^ message = anObject message and: [ 
+		date = anObject date and: [ 
+			version = anObject version and: [ 
+				transformationRule = anObject transformationRule and: [ 
+					condition asString = anObject condition asString ] ] ] ]
 ]
 
-{ #category : #converting }
-DeprecationModel >> asDictionary [
-	
-	^ { 
-		'message' -> message asString .
-		'transformationRule' -> (transformationRule
-			ifNotNil: [ transformationRule asString ])
-	} asDictionary.
+{ #category : #accessing }
+DeprecationModel >> condition [
+
+	^ condition
+]
+
+{ #category : #accessing }
+DeprecationModel >> condition: anObject [
+
+	condition := anObject
+]
+
+{ #category : #accessing }
+DeprecationModel >> date [
+
+	^ date
+]
+
+{ #category : #accessing }
+DeprecationModel >> date: anObject [
+
+	date := anObject
+]
+
+{ #category : #comparing }
+DeprecationModel >> hash [
+
+	^ (((message hash
+		bitXor: date hash)
+			bitXor: version hash)
+				bitXor: transformationRule hash)
+					bitXor: condition asString hash
+]
+
+{ #category : #testing }
+DeprecationModel >> isTransforming [
+
+	^ transformationRule isNotNil
 ]
 
 { #category : #accessing }
@@ -57,4 +86,16 @@ DeprecationModel >> transformationRule [
 DeprecationModel >> transformationRule: anObject [
 
 	transformationRule := anObject
+]
+
+{ #category : #accessing }
+DeprecationModel >> version [
+
+	^ version
+]
+
+{ #category : #accessing }
+DeprecationModel >> version: anObject [
+
+	version := anObject
 ]
