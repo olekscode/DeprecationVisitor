@@ -1,4 +1,9 @@
 # DeprecationVisitor
+
+[![Build status](https://github.com/olekscode/DeprecationVisitor/workflows/CI/badge.svg)](https://github.com/olekscode/DeprecationVisitor/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/olekscode/DeprecationVisitor/badge.svg?branch=master)](https://coveralls.io/github/olekscode/DeprecationVisitor?branch=master)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/olekscode/DeprecationVisitor/master/LICENSE)
+
 A visitor for collecting deprecations from Pharo methods
 
 ## How to install it?
