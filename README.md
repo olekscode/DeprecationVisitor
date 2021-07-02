@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/olekscode/DeprecationVisitor/badge.svg?branch=master)](https://coveralls.io/github/olekscode/DeprecationVisitor?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/olekscode/DeprecationVisitor/master/LICENSE)
 
-A visitor for collecting deprecations from Pharo methods
+A simple visitor that can collect deprecations from Pharo methods. Developed for research purposes, to analyse method deprecations in Pharo images. `DeprecationModel` is a static version of `Deprecation` which stores all the information about the deprecation such as message, date, version, etc., but does not require a dynamic execution context.
 
 ## How to install it?
 
