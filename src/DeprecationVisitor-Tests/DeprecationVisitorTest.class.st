@@ -71,6 +71,12 @@ DeprecationVisitorTest >> mockDeprecatedTransformWithWhen [
 	^ 2 + 2
 ]
 
+{ #category : #'as yet unclassified' }
+DeprecationVisitorTest >> mockNonDeprecatedMethod [
+		
+	^ 2 + 2
+]
+
 { #category : #initialization }
 DeprecationVisitorTest >> setUp [ 
 
@@ -180,4 +186,14 @@ DeprecationVisitorTest >> testVisitDeprecatedTransformWithWhen [
 	method ast acceptVisitor: visitor.
 	
 	self assert: visitor deprecations equals: (OrderedCollection with: deprecation).
+]
+
+{ #category : #'as yet unclassified' }
+DeprecationVisitorTest >> testVisitNonDeprecatedMethod [
+	| method |
+		
+	method := self class >> #mockNonDeprecatedMethod.
+	method ast acceptVisitor: visitor.
+	
+	self assert: visitor deprecations equals: OrderedCollection new.
 ]
