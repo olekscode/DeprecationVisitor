@@ -35,13 +35,13 @@ Consider that you have a deprecated method:
 
 ```Smalltalk
 FFIStructure >> address
-	self
-		deprecated: 'Use #getHandle'
-		on: '27 October 2015'
-		in: 'Pharo5'
-		transformWith: '`@rec address' -> '`@rec getHandle'.
+    self
+        deprecated: 'Use #getHandle'
+        on: '27 October 2015'
+        in: 'Pharo5'
+        transformWith: '`@rec address' -> '`@rec getHandle'.
 	
-	^ self getHandle
+    ^ self getHandle
 ```
 
 `DeprecationVisitor` can be used to collect all deprecations from a given method:
@@ -51,4 +51,16 @@ visitor := DeprecationVisitor new.
 method := FFIStructure >> #address.
 method ast acceptVisitor: visitor.
 visitor deprecations. "an OrderedCollection(a DeprecationModel)"
+```
+
+The collected deprecation will be equivalent to the following one:
+
+```Smalltalk
+DeprecationModel new
+    message: 'Use #getHandle';
+    date: '27 October 2015';
+    version: 'Pharo5';
+    transformationRule: (TransformationRule
+        antecedent: '`@rec address'
+	consequent: '`@rec getHandle').
 ```
