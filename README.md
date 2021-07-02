@@ -30,3 +30,25 @@ spec
 If you are new to baselines and Metacello, check out the [Baselines](https://github.com/pharo-open-documentation/pharo-wiki/blob/master/General/Baselines.md) tutorial on Pharo Wiki.
 
 ## How to use it?
+
+Consider that you have a deprecated method:
+
+```Smalltalk
+FFIStructure >> address
+	self
+		deprecated: 'Use #getHandle'
+		on: '27 October 2015'
+		in: 'Pharo5'
+		transformWith: '`@rec address' -> '`@rec getHandle'.
+	
+	^ self getHandle
+```
+
+`DeprecationVisitor` can be used to collect all deprecations from a given method:
+
+```Smalltalk
+visitor := DeprecationVisitor new.
+method := FFIStructure >> #address.
+method ast acceptVisitor: visitor.
+visitor deprecations. "an OrderedCollection(a DeprecationModel)"
+```
