@@ -74,7 +74,7 @@ DeprecationVisitor >> visitDeprecatedOnInTransformWithWhen: aMessageNode [
 		date: aMessageNode arguments second evaluate;
 		version: aMessageNode arguments third value;
 		transformationRule: (self extractTransformationRuleFrom: ruleNode);
-		condition: aMessageNode arguments fifth evaluate;
+		condition: aMessageNode arguments fifth evaluate asString;
 		yourself).
 ]
 
@@ -97,7 +97,7 @@ DeprecationVisitor >> visitDeprecatedTransformWithWhen: aMessageNode [
 	deprecations add: (DeprecationModel new
 		message: aMessageNode arguments first value;
 		transformationRule: (self extractTransformationRuleFrom: ruleNode);
-		condition: aMessageNode arguments third evaluate;
+		condition: aMessageNode arguments third evaluate asString;
 		yourself).
 ]
 
