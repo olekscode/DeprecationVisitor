@@ -144,7 +144,7 @@ DeprecationVisitorTest >> testVisitDeprecatedOnInTransformWithWhen [
 		transformationRule: (TransformationRule
 			antecedent: '`@rec mockDeprecatedOnInTransformWithWhen'
 			consequent: '`@rec somethingElse');
-		condition: [ true ];
+		condition: '[ true ]';
 		yourself.
 		
 	method := self class >> #mockDeprecatedOnInTransformWithWhen.
@@ -179,7 +179,7 @@ DeprecationVisitorTest >> testVisitDeprecatedTransformWithWhen [
 		transformationRule: (TransformationRule
 			antecedent: '`@rec mockDeprecatedTransformWithWhen'
 			consequent: '`@rec somethingElse');
-		condition: [ true ];
+		condition: '[ true ]';
 		yourself.
 		
 	method := self class >> #mockDeprecatedTransformWithWhen.
